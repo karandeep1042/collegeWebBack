@@ -32,7 +32,7 @@ let tp = nm.createTransport({
 app.post('/verifycredential', (req, res) => {
     let { email, password, admin } = req.body;
     const sql = `select femail,fpassword,fadminpermission from faculty where fpassword=${password} AND femail='${email}' AND fadminpermission=${admin} `
-    // console.log(admin);
+    console.log(admin);
     try {
         db.query(sql, (err, data) => {
             if (err) {
