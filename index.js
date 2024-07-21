@@ -20,12 +20,15 @@ const db = mysql.createConnection({
 })
 
 let tp = nm.createTransport({
-    host: process.env.SMTP_HOST,
+    // host: process.env.SMTP_HOST,
+    host: 'smtp.gmail.com',
     port: 587,
     secure: false,
     auth: {
-        user: process.env.SMTP_MAIL,
-        pass: process.env.SMTP_PASSWORD
+        user: 'collegeproject1140@gmail.com',
+        pass: 'yflwcsnxjhppmrqg'
+        // user: process.env.SMTP_MAIL,
+        // pass: process.env.SMTP_PASSWORD
     },
 });
 
