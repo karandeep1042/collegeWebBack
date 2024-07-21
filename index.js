@@ -5,6 +5,7 @@ const nm = require('nodemailer');
 const dotenv = require('dotenv');
 dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 4000
 
 app.use(express.json())
 app.use(cors());
@@ -88,27 +89,27 @@ app.post('/checkforfirsttime', (req, res) => {
 });
 
 app.post('/fetchuserdetails', (req, res) => {
-    const {fid} = req.body;
+    const { fid } = req.body;
     let query = `select * from faculty where fid =${fid}`;
     console.log(fid);
     db.query(query, (error, data) => {
         if (error) {
             console.log(error);
         } else {
-            res.json({name:data[0].fname});
+            res.json({ name: data[0].fname });
         }
     })
 })
 
 app.post('/insertuserdetails', (req, res) => {
-    const {id,department,date,photo,phone} = req.body;
+    const { id, department, date, photo, phone } = req.body;
     console.log("insert details function");
     let query = `update faculty set fdept="${department}", fjoindate = ${date},fphoneno =${phone},profileimage='${photo}' where fid=${id}`;
     db.query(query, (error, data) => {
         if (error) {
             console.log(error);
         } else {
-            res.json({msg:"success"});
+            res.json({ msg: "success" });
         }
     })
 })
@@ -117,7 +118,7 @@ app.get('/', (req, res) => {
     res.send("heyy");
 })
 
-app.listen(4000, () => {
+app.listen(PORT, () => {
     console.log("server started at port 4000");
     db.connect((err) => {
         if (err) {
